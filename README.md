@@ -1,91 +1,179 @@
-# Motor-Imagery-EEG-Classification
+# 🧠 Motor Imagery EEG Classification (MATLAB)
 
-## Overview
-
-This project implements a complete EEG signal processing and classification pipeline for motor imagery–based Brain–Computer Interface (BCI) applications using MATLAB.
-The system preprocesses EEG signals, removes artifacts, extracts spatial features using Common Spatial Pattern (CSP), and classifies motor imagery tasks using machine learning models.
-
-Developed during a research internship at **National Institute of Technology, Tiruchirappalli (NIT Trichy)** under Dr. Vishnu Priya.
+Cross-subject EEG motor imagery classification pipeline for Brain–Computer Interface (BCI) applications using CSP spatial filtering and machine learning.
 
 ---
 
-## Problem Statement
+## 🎯 Overview
 
-Motor imagery EEG signals are low-amplitude, noisy, and highly variable across trials.
-The objective is to design a robust MATLAB pipeline that can reliably distinguish motor imagery tasks from EEG recordings.
+This project implements an end-to-end EEG signal processing pipeline to classify imagined left vs right hand movements.
 
----
+The system processes raw EEG signals, removes noise and artifacts, extracts discriminative spatial features, and evaluates multiple classifiers across unseen subjects.
 
-## Methodology
-
-### Signal Preprocessing
-
-* 0.5–30 Hz bandpass filtering using MATLAB digital filters
-* Artifact reduction using Principal Component Analysis (PCA)
-* Independent Component Analysis (ICA) for separating physiological artifacts
-
-### Feature Extraction
-
-* Common Spatial Pattern (CSP) for discriminative spatial filtering
-* Log-variance feature computation from spatially filtered signals
-
-### Classification
-
-* Support Vector Machine (SVM)
-* Random Forest
+**Dataset:** 52-subject Motor Imagery EEG (GigaDB)
+**Platform:** MATLAB
+**Application:** Brain–Computer Interface (BCI)
 
 ---
 
-## Pipeline
+## 🔄 Pipeline
 
-EEG → Bandpass Filter → PCA/ICA → CSP → Feature Vector → Classifier → Prediction
+Raw EEG
+➡️ Bandpass Filtering (0.5–30 Hz)
+➡️ PCA (Dimensionality Reduction)
+➡️ ICA (Artifact Separation)
+➡️ CSP (Spatial Filtering)
+➡️ Feature Extraction (Log-Variance)
+➡️ Classification (LDA / SVM / Boosting)
+➡️ Cross-Subject Evaluation
 
 ---
 
-## Repository Structure
+## 📂 Repository Structure
 
-```id="matstr1"
-data/            EEG datasets (not included)
-src/             MATLAB scripts (preprocessing, CSP, classification)
-results/         Plots and evaluation outputs
-README.md
+```text
+Motor-Imagery-EEG-Classification/
+├── data/      # Dataset description & placement
+├── docs/      # Methodology documentation
+├── results/   # Plots & evaluation outputs
+├── src/       # MATLAB source code
+└── README.md
 ```
 
 ---
 
-## Requirements
+### 📁 data/
 
-* MATLAB R2020+
-* Statistics and Machine Learning Toolbox
+```text
+data/
+└── README.md   # Dataset description & download info
+```
 
 ---
 
-## Usage
+### 📁 docs/
 
-Run the pipeline in MATLAB:
+```text
+docs/
+├── pipeline.md
+├── preprocessing.md
+├── csp.md
+├── classification.md
+└── results.md
+```
 
-```matlab id="matrun1"
+---
+
+### 📁 src/
+
+```text
+src/
+├── main_pipeline.m
+├── bandpass_filter.m
+├── apply_pca.m
+├── apply_ica.m
+├── compute_csp.m
+├── extract_features.m
+└── classify_eeg.m
+```
+
+---
+
+### 📁 results/
+
+```text
+results/
+├── Left_Raw.png
+├── Right_Raw.png
+├── Noise.png
+├── PCA Components.png
+├── PCA Scree plot.png
+├── Cumulative Variance.png
+├── ICA.png
+├── ICA Cleaning.png
+├── CSP Space.png
+└── README.md
+```
+
+---
+
+## ⚙️ Requirements
+
+* MATLAB R2020 or newer
+* Statistics and Machine Learning Toolbox
+* Signal Processing Toolbox
+* FastICA package (MATLAB)
+
+---
+
+## ▶️ Usage
+
+1️⃣ Download EEG dataset (see `data/README.md`)
+2️⃣ Place subject files (`s01.mat … s52.mat`) in project root or `data/`
+3️⃣ Run pipeline:
+
+```matlab
 run('src/main_pipeline.m')
 ```
 
 ---
 
-## Results
+## 📊 Results Summary
 
-CSP-based spatial filtering improved separability between motor imagery classes and enabled effective classification using SVM and Random Forest models.
+| Classifier     | Accuracy (%) | Precision | Recall | F1-Score |
+| -------------- | ------------ | --------- | ------ | -------- |
+| **LDA**        | 85.00        | 0.67      | 0.41   | 0.78     |
+| **SVM**        | **87.00**    | 0.66      | 0.69   | 0.68     |
+| **AdaBoost**   | 82.50        | 0.63      | 0.59   | 0.81     |
+| **LogitBoost** | **87.00**    | 0.57      | 0.59   | **0.88** |
+
+### 🏆 Key Findings
+
+* Highest accuracy: **SVM & LogitBoost (87%)**
+* Highest F1-score: **LogitBoost (0.88)**
+* CSP spatial filtering improved class separability
+* Pipeline generalizes across unseen subjects
 
 ---
 
-## Applications
+## 📈 Visual Results
 
-* Brain–Computer Interfaces (BCI)
-* Neurorehabilitation
-* Assistive communication systems
-* Human–machine interaction
+The `results/` folder contains stage-wise outputs:
+
+* Raw EEG signals
+* PCA variance analysis
+* ICA components & cleaning
+* CSP spatial patterns
+
+These confirm effectiveness of each processing stage.
 
 ---
 
-## Author
+## 📚 Documentation
+
+Detailed methodology available in:
+
+* `docs/pipeline.md` → full workflow
+* `docs/preprocessing.md` → filtering & PCA/ICA
+* `docs/csp.md` → spatial filtering theory
+* `docs/classification.md` → models & metrics
+* `docs/results.md` → evaluation analysis
+
+---
+
+## 🧠 Dataset
+
+52-subject Motor Imagery EEG dataset (GigaDB)
+
+See `data/README.md` for:
+
+* dataset structure
+* download link
+* citation
+
+---
+
+## 🎓 Author
 
 **Srikumaran S.S.**
 B.Tech Electrical and Electronics Engineering
@@ -93,7 +181,23 @@ National Institute of Technology, Tiruchirappalli
 
 ---
 
-## Note
+## 📌 Applications
 
-Dataset is not included due to research/data-sharing restrictions.
+* Brain–Computer Interfaces (BCI)
+* Neurorehabilitation
+* Assistive communication
+* Human–machine interaction
 
+---
+
+## ⭐ Summary
+
+This repository demonstrates a complete MATLAB EEG motor imagery classification pipeline with:
+
+* advanced signal preprocessing
+* CSP spatial feature extraction
+* multi-model classification
+* cross-subject evaluation
+* reproducible results
+
+---

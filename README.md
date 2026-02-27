@@ -18,14 +18,9 @@ The system processes raw EEG signals, removes noise and artifacts, extracts disc
 
 ## 🔄 Pipeline
 
-Raw EEG
-➡️ Bandpass Filtering (0.5–30 Hz)
-➡️ PCA (Dimensionality Reduction)
-➡️ ICA (Artifact Separation)
-➡️ CSP (Spatial Filtering)
-➡️ Feature Extraction (Log-Variance)
-➡️ Classification (LDA / SVM / Boosting)
-➡️ Cross-Subject Evaluation
+<p align="center">
+  <img src="docs/pipeline.png" width="900"/>
+</p>
 
 ---
 

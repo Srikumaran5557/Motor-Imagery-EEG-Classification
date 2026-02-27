@@ -173,13 +173,6 @@ See `data/README.md` for:
 
 ---
 
-## 🎓 Author
-
-**Srikumaran S.S.**
-B.Tech Electrical and Electronics Engineering
-National Institute of Technology, Tiruchirappalli
-
----
 
 ## 📌 Applications
 
@@ -190,14 +183,4 @@ National Institute of Technology, Tiruchirappalli
 
 ---
 
-## ⭐ Summary
 
-This repository demonstrates a complete MATLAB EEG motor imagery classification pipeline with:
-
-* advanced signal preprocessing
-* CSP spatial feature extraction
-* multi-model classification
-* cross-subject evaluation
-* reproducible results
-
----
